@@ -7,7 +7,11 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+protocol removeTextFromTF {
+    func removeTextFromTF()
+}
+
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private let userName = "Dima"
     private let password = "123"
@@ -38,6 +42,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.placeholder = "User Name"
+        textField.delegate = self
         return textField
     }()
     
@@ -45,6 +50,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
+        textField.delegate = self
         return textField
     }()
     
@@ -61,21 +67,23 @@ class LoginViewController: UIViewController {
     
     private lazy var forgotUserNameButton: UIButton = {
         let button = UIButton()
+        button.tag = 0
         button.setTitle("Forgot UserName?", for: .normal)
         button.setTitleColor(.blue, for: .normal)
 //        button.backgroundColor = .orange
         button.titleLabel?.font = UIFont(name: "Arial", size: 15)
-        button.addTarget(self, action: #selector(forgotName), for: .touchUpInside)
+        button.addTarget(self, action: #selector(forgotUserInfo), for: .touchUpInside)
         return button
     }()
     
     private lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
+        button.tag = 1
         button.setTitle("Forgot Password?", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial", size: 15)
 //        button.backgroundColor = .orange
-        button.addTarget(self, action: #selector(forgotPass), for: .touchUpInside)
+        button.addTarget(self, action: #selector(forgotUserInfo), for: .touchUpInside)
         return button
     }()
     
@@ -83,10 +91,25 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        userNameTF.delegate = self
+//        passwordTF.delegate = self
         setupView()
     }
 
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userNameTF {
+            passwordTF.becomeFirstResponder()
+        } else {
+            login()
+        }
+        return true
+    }
+    
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(
             title: title,
@@ -102,8 +125,6 @@ class LoginViewController: UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
-    
     
     
     private func setupView() {
@@ -162,12 +183,22 @@ class LoginViewController: UIViewController {
             let userInfoVC = UserInfoViewController()
             
             let navigationUserInfoVC = UINavigationController(rootViewController: userInfoVC)
-            welcomeVC.modalPresentationStyle = .fullScreen
-            present(welcomeVC, animated: true)
+//            welcomeVC.modalPresentationStyle = .fullScreen
+//            present(welcomeVC, animated: true)
             
             let tabbar = UITabBarController()
-            welcomeVC.tabBarItem = .init(title: "Welcome", image: UIImage(named: "welcome"), tag: 0)
-            navigationUserInfoVC.tabBarItem = .init(title: "Seneca", image: UIImage(named: "seneca"), selectedImage: nil)
+            tabbar.tabBar.backgroundColor = .white
+            welcomeVC.tabBarItem = .init(
+                title: "drink",
+                image: UIImage(named: "drink"),
+//                tag: 0
+                selectedImage: UIImage(named: "brain")
+            )
+            navigationUserInfoVC.tabBarItem = .init(
+                title: "hammer",
+                image: UIImage(named: "hammer"),
+                selectedImage: UIImage(named: "brain")
+            )
             tabbar.modalPresentationStyle = .fullScreen
             tabbar.viewControllers = [welcomeVC, navigationUserInfoVC]
             
@@ -175,19 +206,24 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @objc private func forgotName() {
-        showAlert(
-            title: "Oooops",
+    @objc private func forgotUserInfo(sender: UIButton) {
+        sender.tag == 0
+        ? showAlert(
+            title: "Ooops",
             message: "Your User Name is \(userName)"
         )
-    }
-    
-    @objc private func forgotPass() {
-        showAlert(
+        : showAlert(
             title: "Oooops",
             message: "Your Password is \(password)"
         )
     }
-    
 }
 
+extension LoginViewController: removeTextFromTF {
+    func removeTextFromTF() {
+        userNameTF.text = ""
+        passwordTF.text = ""
+    }
+    
+    
+}
