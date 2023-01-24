@@ -13,9 +13,6 @@ protocol removeTextFromTF {
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    private let userName = "Dima"
-    private let password = "123"
-    
     let personInfo = User.getUserInfo()
     
     private lazy var stackView: UIStackView = {
@@ -210,11 +207,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         sender.tag == 0
         ? showAlert(
             title: "Ooops",
-            message: "Your User Name is \(userName)"
+            message: "Your User Name is \(personInfo.userName)"
         )
         : showAlert(
             title: "Oooops",
-            message: "Your Password is \(password)"
+            message: "Your Password is \(personInfo.password)"
         )
     }
 }
