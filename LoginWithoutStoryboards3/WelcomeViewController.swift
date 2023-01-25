@@ -9,7 +9,7 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
-    var delegate: removeTextFromTF?
+    weak var delegate: RemoveTextFromTF?
     
     private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
@@ -41,6 +41,8 @@ class WelcomeViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    
+    
     private func addSubviews(subviews: UIView...) {
         subviews.forEach { subview in
             view.addSubview(subview)
@@ -59,8 +61,9 @@ class WelcomeViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 100),
-            logoutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
+            logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+//            logoutButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 300),
+            logoutButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     

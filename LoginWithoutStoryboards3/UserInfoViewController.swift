@@ -17,16 +17,41 @@ class UserInfoViewController: UIViewController {
         label.backgroundColor = .black
         label.font = UIFont(name: "Arial", size: 14)
         label.textColor = .white
+        label.numberOfLines = 0
         return label
     }()
+    
+    private lazy var moreDetailsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("More details", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.titleLabel?.font = UIFont(name: "Arial", size: 17)
+        button.addTarget(self, action: #selector(moreDetails), for: .touchUpInside)
+        return button
+    }()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\(person?.person?.name ?? "") \(person?.person?.lastName ?? "")"
         view.backgroundColor = .red
-        view.addSubview(personStoryLabel)
+        addSubviews(subViews: personStoryLabel, moreDetailsButton)
         setupConstraints()
+    }
+    
+    private func addSubviews(subViews: UIView...) {
+        subViews.forEach { subView in
+            view.addSubview(subView)
+        }
+    }
+    
+    @objc private func moreDetails() {
+        let moreDetailsVC = MoreDetailsViewController()
+        moreDetailsVC.person = person
+        moreDetailsVC.modalPresentationStyle = .fullScreen
+        present(moreDetailsVC, animated: true)
     }
     
     private func setupConstraints() {
@@ -35,8 +60,17 @@ class UserInfoViewController: UIViewController {
         NSLayoutConstraint.activate([
             personStoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             personStoryLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            personStoryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            personStoryLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 200)
+            personStoryLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+        ])
+        
+        moreDetailsButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            moreDetailsButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
+//            moreDetailsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            moreDetailsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            moreDetailsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            moreDetailsButton.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     

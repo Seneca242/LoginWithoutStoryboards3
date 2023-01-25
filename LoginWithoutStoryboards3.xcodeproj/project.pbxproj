@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0416B1D92981A8B800C10768 /* MoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0416B1D82981A8B800C10768 /* MoreDetailsViewController.swift */; };
 		042201B52975B7E600BBE70A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042201B42975B7E600BBE70A /* WelcomeViewController.swift */; };
 		042201B92976F45F00BBE70A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042201B82976F45F00BBE70A /* UserModel.swift */; };
 		042201BB2976FDCD00BBE70A /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042201BA2976FDCD00BBE70A /* UserInfoViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0416B1D82981A8B800C10768 /* MoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailsViewController.swift; sourceTree = "<group>"; };
 		042201B42975B7E600BBE70A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		042201B82976F45F00BBE70A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		042201BA2976FDCD00BBE70A /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				04BDB8EB2970669E002BA11D /* LoginViewController.swift */,
 				042201B42975B7E600BBE70A /* WelcomeViewController.swift */,
 				042201BA2976FDCD00BBE70A /* UserInfoViewController.swift */,
+				0416B1D82981A8B800C10768 /* MoreDetailsViewController.swift */,
 				042201B82976F45F00BBE70A /* UserModel.swift */,
 				04BDB8F0297066A2002BA11D /* Assets.xcassets */,
 				04BDB8F2297066A2002BA11D /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 				04BDB8EC2970669E002BA11D /* LoginViewController.swift in Sources */,
 				042201BB2976FDCD00BBE70A /* UserInfoViewController.swift in Sources */,
 				042201B52975B7E600BBE70A /* WelcomeViewController.swift in Sources */,
+				0416B1D92981A8B800C10768 /* MoreDetailsViewController.swift in Sources */,
 				04BDB8E82970669E002BA11D /* AppDelegate.swift in Sources */,
 				042201B92976F45F00BBE70A /* UserModel.swift in Sources */,
 				04BDB8EA2970669E002BA11D /* SceneDelegate.swift in Sources */,

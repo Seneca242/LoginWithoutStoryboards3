@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol removeTextFromTF {
+protocol RemoveTextFromTF: AnyObject {
     func removeTextFromTF()
 }
 
@@ -177,7 +177,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             )
         } else {
             let welcomeVC = WelcomeViewController()
+            welcomeVC.delegate = self
             let userInfoVC = UserInfoViewController()
+            userInfoVC.person = personInfo
             
             let navigationUserInfoVC = UINavigationController(rootViewController: userInfoVC)
 //            welcomeVC.modalPresentationStyle = .fullScreen
@@ -216,7 +218,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension LoginViewController: removeTextFromTF {
+extension LoginViewController: RemoveTextFromTF {
     func removeTextFromTF() {
         userNameTF.text = ""
         passwordTF.text = ""
