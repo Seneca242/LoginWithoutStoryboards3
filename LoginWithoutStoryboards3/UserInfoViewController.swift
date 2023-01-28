@@ -58,6 +58,33 @@ class UserInfoViewController: UIViewController {
         scrollView.addSubview(contentView)
         addSubviewsToContentView(subViews: moreDetailsButton, personStoryLabel)
         setupConstraints()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        title = "Seneca's story"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = UIColor(
+            displayP3Red: 21/255,
+            green: 101/255,
+            blue: 192/255,
+            alpha: 194/255
+        )
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(backButton)
+        )
+        
+        navigationController?.navigationBar.tintColor = .white
     }
     
     private func addSubviews(subViews: UIView...) {
@@ -74,9 +101,15 @@ class UserInfoViewController: UIViewController {
     
     @objc private func moreDetails() {
         let moreDetailsVC = MoreDetailsViewController()
+        let navigationMoreDetailsVC = UINavigationController(rootViewController: moreDetailsVC)
+        
         moreDetailsVC.person = person
-        moreDetailsVC.modalPresentationStyle = .fullScreen
-        present(moreDetailsVC, animated: true)
+        navigationMoreDetailsVC.modalPresentationStyle = .fullScreen
+        present(navigationMoreDetailsVC, animated: true)
+    }
+    
+    @objc private func backButton() {
+        dismiss(animated: true)
     }
     
     private func setupConstraints() {

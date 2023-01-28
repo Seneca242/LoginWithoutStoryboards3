@@ -25,6 +25,8 @@ class MoreDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .green
         view.addSubview(senecaPhoto)
+        setupNavigationBar()
+//        setupConstraints()
     }
     
 //    override func viewDidLayoutSubviews() {
@@ -35,6 +37,45 @@ class MoreDetailsViewController: UIViewController {
 //    func changeCornerRadius() {
 //        senecaPhoto.layer.cornerRadius = senecaPhoto.frame.width / 2
 //    }
+    
+    private func setupNavigationBar() {
+        title = "Seneca's details"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = UIColor(
+            displayP3Red: 21/255,
+            green: 101/255,
+            blue: 192/255,
+            alpha: 194/255
+        )
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(backButton)
+        )
+        
+//        let newBackButton = UIBarButtonItem(
+//            title: "Back",
+//            style: .plain,
+//            target: self,
+//            action: #selector(backAction)
+//        )
+//        
+//        navigationItem.backBarButtonItem = newBackButton
+        
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    @objc private func backButton() {
+        dismiss(animated: true)
+    }
     
     private func setupConstraints() {
         senecaPhoto.translatesAutoresizingMaskIntoConstraints = false
