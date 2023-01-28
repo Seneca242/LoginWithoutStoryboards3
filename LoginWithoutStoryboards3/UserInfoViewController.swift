@@ -50,22 +50,13 @@ class UserInfoViewController: UIViewController {
         CGSize(width: view.frame.width, height: view.frame.height + 400)
     }
     
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.spacing = 20
-        return stackView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\(person?.person?.name ?? "") \(person?.person?.lastName ?? "")"
         view.backgroundColor = .red
         addSubviews(subViews: scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(stackView)
-        addSubviewsToStackView(subViews: moreDetailsButton, personStoryLabel)
+        addSubviewsToContentView(subViews: moreDetailsButton, personStoryLabel)
         setupConstraints()
     }
     
@@ -75,9 +66,9 @@ class UserInfoViewController: UIViewController {
         }
     }
     
-    private func addSubviewsToStackView(subViews: UIView...) {
+    private func addSubviewsToContentView(subViews: UIView...) {
         subViews.forEach { subView in
-            stackView.addSubview(subView)
+            contentView.addSubview(subView)
         }
     }
     
@@ -92,27 +83,17 @@ class UserInfoViewController: UIViewController {
         personStoryLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            personStoryLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 20),
-            personStoryLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -20),
-            personStoryLabel.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 100),
+            personStoryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            personStoryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            personStoryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100),
         ])
         
         moreDetailsButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            moreDetailsButton.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 40),
-            //            moreDetailsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            //            moreDetailsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            moreDetailsButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
+            moreDetailsButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            moreDetailsButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             moreDetailsButton.widthAnchor.constraint(equalToConstant: 100)
-        ])
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
 }
