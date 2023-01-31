@@ -10,6 +10,7 @@ import UIKit
 class UserInfoViewController: UIViewController {
 
     var person: User?
+    var delegate: RemoveTextFromTF?
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -47,7 +48,7 @@ class UserInfoViewController: UIViewController {
     }()
     
     private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height + 400)
+        CGSize(width: view.frame.width, height: view.frame.height + 200)
     }
     
     override func viewDidLoad() {
@@ -78,11 +79,19 @@ class UserInfoViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .cancel,
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            barButtonSystemItem: .cancel,
+//            target: self,
+//            action: #selector(backButton)
+//        )
+        
+        let backButton = UIBarButtonItem(
+            title: "Back",
+            style: .plain,
             target: self,
-            action: #selector(backButton)
+            action: #selector(backAction)
         )
+        navigationItem.leftBarButtonItem = backButton
         
         navigationController?.navigationBar.tintColor = .white
     }
@@ -108,7 +117,13 @@ class UserInfoViewController: UIViewController {
         present(navigationMoreDetailsVC, animated: true)
     }
     
-    @objc private func backButton() {
+//    @objc private func backButton() {
+//        dismiss(animated: true)
+//    }
+    
+    @objc func backAction() {
+//        navigationController?.popViewController(animated: true)
+        delegate?.removeTextFromTF()
         dismiss(animated: true)
     }
     

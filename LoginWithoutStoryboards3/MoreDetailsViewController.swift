@@ -55,25 +55,30 @@ class MoreDetailsViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .cancel,
-            target: self,
-            action: #selector(backButton)
-        )
-        
-//        let newBackButton = UIBarButtonItem(
-//            title: "Back",
-//            style: .plain,
+            
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            barButtonSystemItem: .cancel,
 //            target: self,
-//            action: #selector(backAction)
+//            action: #selector(backButton)
 //        )
-//        
-//        navigationItem.backBarButtonItem = newBackButton
-        
+
+        let backButton = UIBarButtonItem(
+            title: "Back",
+            style: .plain,
+            target: self,
+            action: #selector(backAction)
+        )
+        navigationItem.leftBarButtonItem = backButton
+    
         navigationController?.navigationBar.tintColor = .white
     }
     
-    @objc private func backButton() {
+//    @objc private func backButton() {
+//        dismiss(animated: true)
+//    }
+    
+    @objc func backAction() {
+//        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
     
