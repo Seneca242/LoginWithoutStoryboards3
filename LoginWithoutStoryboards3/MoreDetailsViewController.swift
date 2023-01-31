@@ -13,11 +13,9 @@ class MoreDetailsViewController: UIViewController {
     
     private lazy var senecaPhoto: UIImageView = {
         var image = UIImageView()
-        image = UIImageView(frame:CGRect(x: 50, y: 200, width: 300, height: 300))
         image.image = UIImage(named: person?.person?.personPhoto ?? "")
         image.backgroundColor = .orange
-        image.contentMode = .scaleAspectFit
-        image.layer.cornerRadius = image.frame.width / 2
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -26,17 +24,20 @@ class MoreDetailsViewController: UIViewController {
         view.backgroundColor = .green
         view.addSubview(senecaPhoto)
         setupNavigationBar()
-//        setupConstraints()
+        setupConstraints()
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        changeCornerRadius()
-//    }
-//
-//    func changeCornerRadius() {
-//        senecaPhoto.layer.cornerRadius = senecaPhoto.frame.width / 2
-//    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        changeCornerRadius()
+    }
+
+    func changeCornerRadius() {
+        senecaPhoto.layer.cornerRadius = senecaPhoto.frame.width / 2
+        senecaPhoto.layer.borderColor = UIColor.blue.cgColor
+        senecaPhoto.layer.borderWidth = 3
+        senecaPhoto.layer.masksToBounds = true
+    }
     
     private func setupNavigationBar() {
         title = "Seneca's details"
@@ -86,12 +87,10 @@ class MoreDetailsViewController: UIViewController {
         senecaPhoto.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            senecaPhoto.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            senecaPhoto.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
-            senecaPhoto.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            senecaPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            senecaPhoto.heightAnchor.constraint(equalToConstant: 300)
-            
+            senecaPhoto.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            senecaPhoto.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            senecaPhoto.heightAnchor.constraint(equalToConstant: 200),
+            senecaPhoto.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     
