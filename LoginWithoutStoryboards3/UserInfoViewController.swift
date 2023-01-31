@@ -77,7 +77,7 @@ class UserInfoViewController: UIViewController {
     
     private func addSubviewsToStackView(subViews: UIView...) {
         subViews.forEach { subView in
-            stackView.addSubview(subView)
+            stackView.addArrangedSubview(subView)
         }
     }
     
