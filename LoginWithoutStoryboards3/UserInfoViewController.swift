@@ -110,11 +110,13 @@ class UserInfoViewController: UIViewController {
     
     @objc private func moreDetails() {
         let moreDetailsVC = MoreDetailsViewController()
-        let navigationMoreDetailsVC = UINavigationController(rootViewController: moreDetailsVC)
+//        let navigationMoreDetailsVC = UINavigationController(rootViewController: moreDetailsVC)
         
         moreDetailsVC.person = person
-        navigationMoreDetailsVC.modalPresentationStyle = .fullScreen
-        present(navigationMoreDetailsVC, animated: true)
+//        navigationMoreDetailsVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(moreDetailsVC, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+//        present(navigationMoreDetailsVC, animated: true)
     }
     
 //    @objc private func backButton() {

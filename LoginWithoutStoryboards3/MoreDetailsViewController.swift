@@ -25,6 +25,8 @@ class MoreDetailsViewController: UIViewController {
         view.addSubview(senecaPhoto)
         setupNavigationBar()
         setupConstraints()
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,26 +59,7 @@ class MoreDetailsViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
             
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(
-//            barButtonSystemItem: .cancel,
-//            target: self,
-//            action: #selector(backButton)
-//        )
-
-        let backButton = UIBarButtonItem(
-            title: "Back",
-            style: .plain,
-            target: self,
-            action: #selector(backAction)
-        )
-        navigationItem.leftBarButtonItem = backButton
-    
-        navigationController?.navigationBar.tintColor = .white
     }
-    
-//    @objc private func backButton() {
-//        dismiss(animated: true)
-//    }
     
     @objc func backAction() {
 //        navigationController?.popViewController(animated: true)
