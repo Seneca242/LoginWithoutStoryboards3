@@ -10,6 +10,7 @@ import UIKit
 class UserInfoViewController: UIViewController {
 
     var person: User?
+    var delegate: RemoveTextFromTF?
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
