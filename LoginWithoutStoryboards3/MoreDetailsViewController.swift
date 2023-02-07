@@ -25,6 +25,7 @@ class MoreDetailsViewController: UIViewController {
         view.addSubview(senecaPhoto)
         setupNavigationBar()
         setupConstraints()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,15 +56,7 @@ class MoreDetailsViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-        let backButton = UIBarButtonItem(
-            title: "Back",
-            style: .plain,
-            target: self,
-            action: #selector(backAction)
-        )
-        navigationItem.leftBarButtonItem = backButton
-    
-        navigationController?.navigationBar.tintColor = .white
+
     }
     
     @objc func backAction() {
@@ -78,7 +71,7 @@ class MoreDetailsViewController: UIViewController {
             senecaPhoto.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             senecaPhoto.heightAnchor.constraint(equalToConstant: 200),
             senecaPhoto.widthAnchor.constraint(equalToConstant: 200)
-            
+
         ])
     }
     
