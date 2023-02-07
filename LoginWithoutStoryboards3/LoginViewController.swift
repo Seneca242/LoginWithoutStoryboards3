@@ -180,6 +180,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             welcomeVC.delegate = self
             let userInfoVC = UserInfoViewController()
             userInfoVC.person = personInfo
+            userInfoVC.delegate = self
             
             let navigationUserInfoVC = UINavigationController(rootViewController: userInfoVC)
 //            welcomeVC.modalPresentationStyle = .fullScreen

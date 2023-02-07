@@ -10,7 +10,6 @@ import UIKit
 class UserInfoViewController: UIViewController {
 
     var person: User?
-    var delegate: RemoveTextFromTF?
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -55,8 +54,6 @@ class UserInfoViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        //
-        stackView.distribution = .equalSpacing
         stackView.spacing = 20
         return stackView
     }()
@@ -80,7 +77,6 @@ class UserInfoViewController: UIViewController {
     
     private func addSubviewsToStackView(subViews: UIView...) {
         subViews.forEach { subView in
-            // addArrangedSubview vs addSubview
             stackView.addArrangedSubview(subView)
         }
     }
